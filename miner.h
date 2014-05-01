@@ -529,7 +529,7 @@ struct cgpu_info {
 
 	const char *kname;
 #ifdef HAVE_OPENCL
-	char *cl_filename;
+        char *cl_filename;
 	bool mapped;
 	int virtual_gpu;
 	int virtual_adl;

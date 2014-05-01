@@ -1499,11 +1499,11 @@ static struct opt_table opt_config_table[] = {
 	OPT_WITHOUT_ARG("--scrypt",
 			opt_set_bool, &opt_scrypt,
 			"Use the scrypt algorithm for mining"),
+#endif
+#ifdef HAVE_OPENCL
 	OPT_WITH_ARG("--cl-filename",
 		     set_cl_filename, NULL, NULL,
 		     "Sets the kernel .cl filename WITHOUT FILE EXTENSION - one value or comma separated list (e.g. scrypt130511_lantis,scrypt130511,scrypt130511_alexey)"),
-#endif
-#ifdef HAVE_OPENCL
 	OPT_WITH_ARG("--shaders",
 		     set_shaders, NULL, NULL,
 		     "GPU shaders per card for tuning scrypt, comma separated"),
@@ -4740,7 +4740,7 @@ void write_config(FILE *fcfg)
 				}
 			}
 		};
-#ifdef USE_SCRYPT
+#ifdef HAVE_ADL
 		if ((nDevs > 0) && (gpus[0].cl_filename)) {
 			fputs("\",\n\"cl-filename\" : \"", fcfg);
 			for(i = 0; i < nDevs; i++)
@@ -4760,8 +4760,6 @@ void write_config(FILE *fcfg)
 			for(i = 0; i < nDevs; i++)
 				fprintf(fcfg, "%s%d", i > 0 ? "," : "", (int)gpus[i].shaders);
 		}
-#endif
-#ifdef HAVE_ADL
 		fputs("\",\n\"gpu-engine\" : \"", fcfg);
 		for(i = 0; i < nDevs; i++)
 			fprintf(fcfg, gpus[i].gpu_engine_exit != gpus[i].gpu_engine ? "%s%d-%d:%d" : "%s%d-%d",
@@ -8899,3 +8897,4 @@ retry:
 
 	return 0;
 }
+
