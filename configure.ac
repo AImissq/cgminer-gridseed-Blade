@@ -233,9 +233,9 @@ scrypt="no"
 		[AC_HELP_STRING([--enable-scrypt],[Compile support for scrypt litecoin mining (default disabled)])],
 		[scrypt=$enableval]
 		)
-	if test "x$scrypt" = xyes; then
+if test "x$scrypt" = xyes; then
 		AC_DEFINE([USE_SCRYPT], [1], [Defined to 1 if scrypt support is wanted])
-	fi
+fi
 
 AM_CONDITIONAL([HAS_SCRYPT], [test x$scrypt = xyes])
 
@@ -572,10 +572,9 @@ if test "x$opencl" != xno; then
 	fi
 else
 	echo "  OpenCL...............: Detection overrided. GPU mining support DISABLED"
-	if test "x$avalon$bitforce$bitfury$icarus$modminer$bflsc$hashfast$klondike$knc" = xnonononononononono; then
+	if test "x$avalon$bitforce$bitfury$gridseed$icarus$modminer$bflsc$hashfast$klondike$knc" = xnononononononononono; then
 		AC_MSG_ERROR([No mining configured in])
 	fi
-	echo "  scrypt...............: Disabled (needs OpenCL)"
 fi
 
 if test "x$adl" != xno; then

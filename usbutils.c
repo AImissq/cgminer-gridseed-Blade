@@ -57,9 +57,9 @@
 
 #define USB_CONFIG 1
 
-#define GRIDSEED_TIMEOUT_MS 999
 
 #ifdef WIN32
+#define GRIDSEED_TIMEOUT_MS 999
 #define BFLSC_TIMEOUT_MS 999
 #define BITFORCE_TIMEOUT_MS 999
 #define BITFURY_TIMEOUT_MS 999
@@ -73,6 +73,7 @@
  * to timeout on their own. */
 #define WIN_CALLBACK_EXTRA 40
 #else
+#define GRIDSEED_TIMEOUT_MS 100
 #define BFLSC_TIMEOUT_MS 300
 #define BITFORCE_TIMEOUT_MS 200
 #define BITFURY_TIMEOUT_MS 100

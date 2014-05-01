@@ -1057,6 +1057,7 @@ extern char *opt_bitburner_fury_options;
 #endif
 #ifdef USE_GRIDSEED
 extern char *opt_gridseed_options;
+extern char *opt_gridseed_freq;
 #endif
 #ifdef USE_KLONDIKE
 extern char *opt_klondike_options;
@@ -1600,6 +1601,7 @@ enum api_data_type {
 	API_TIMEVAL,
 	API_TIME,
 	API_MHS,
+	API_KHS,
 	API_MHTOTAL,
 	API_TEMP,
 	API_UTILITY,
