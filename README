@@ -1,8 +1,8 @@
-This is a personal fork from gminer 3.7.2 by Martin "Kalroth" Danielsen modify by elbandi
+This is a personal fork from cgminer 3.7.2 by Martin "Kalroth" Danielsen modify by elbandi
 
 I add support of Gridseed Hardware (G-Blade 40 chips GC3355)
 
-CGMiner 3.72 with GridSeed GC3355 support
+CGMiner 3.7.3 with GridSeed GC3355 support
 
 ./configure --enable-scrypt --enable-gridseed
 
@@ -12,6 +12,8 @@ GC3355-specific options can be specified via --gridseed-options or "gridseed-opt
 •pll_r, pll_f, pll_od - fine-grained frequency tuning; see below
 •chips - number of chips per device (default 5)
 •per_chip_stats - print per-chip nonce generations and hardware failures
+
+Example: --gridseed-options chips=40 freq=700 baud=115200
 
 If pll_r/pll_f/pll_od are specified, freq is ignored, and calculated as follows:
 •Fin = 25
