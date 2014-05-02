@@ -952,7 +952,7 @@ static char *set_no_extranonce_subscribe(char *arg)
 		add_pool();
 
 	pool = pools[total_noextranonce - 1];
-	applog(LOG_DEBUG, "Disable extranonce subscribe on %d", pool->pool_no);
+	applog(LOG_DEBUG, "Disable extranonce subscribe on %s", pool->poolname);
 	opt_set_invbool(&pool->extranonce_subscribe);
 
 	return NULL;
