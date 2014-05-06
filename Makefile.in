@@ -86,20 +86,21 @@ bin_PROGRAMS = cgminer$(EXEEXT)
 @HAS_OPENCL_TRUE@am__append_2 = driver-opencl.h driver-opencl.c ocl.c \
 @HAS_OPENCL_TRUE@	ocl.h findnonce.c findnonce.h adl.c adl.h \
 @HAS_OPENCL_TRUE@	adl_functions.h *.cl
-@NEED_FPGAUTILS_TRUE@am__append_3 = fpgautils.c fpgautils.h
-@WANT_USBUTILS_TRUE@am__append_4 = usbutils.c usbutils.h
+@USE_BUILD_NUMBER_TRUE@am__append_3 = -DBUILD_NUMBER=\"$(BUILD_NUMBER)\"
+@NEED_FPGAUTILS_TRUE@am__append_4 = fpgautils.c fpgautils.h
+@WANT_USBUTILS_TRUE@am__append_5 = usbutils.c usbutils.h
 
 # Device drivers
-@HAS_AVALON_TRUE@am__append_5 = driver-avalon.c driver-avalon.h
-@HAS_KNC_TRUE@am__append_6 = driver-knc-spi-fpga.c
-@HAS_BFLSC_TRUE@am__append_7 = driver-bflsc.c driver-bflsc.h
-@HAS_BITFORCE_TRUE@am__append_8 = driver-bitforce.c
-@HAS_HASHFAST_TRUE@am__append_9 = driver-hashfast.c driver-hashfast.h hf_protocol.h
-@HAS_BITFURY_TRUE@am__append_10 = driver-bitfury.c driver-bitfury.h
-@HAS_GRIDSEED_TRUE@am__append_11 = driver-gridseed.c driver-gridseed.h
-@HAS_ICARUS_TRUE@am__append_12 = driver-icarus.c driver-gridseed.c driver-gridseed.h
-@HAS_KLONDIKE_TRUE@am__append_13 = driver-klondike.c
-@HAS_MODMINER_TRUE@am__append_14 = driver-modminer.c
+@HAS_AVALON_TRUE@am__append_6 = driver-avalon.c driver-avalon.h
+@HAS_KNC_TRUE@am__append_7 = driver-knc-spi-fpga.c
+@HAS_BFLSC_TRUE@am__append_8 = driver-bflsc.c driver-bflsc.h
+@HAS_BITFORCE_TRUE@am__append_9 = driver-bitforce.c
+@HAS_HASHFAST_TRUE@am__append_10 = driver-hashfast.c driver-hashfast.h hf_protocol.h
+@HAS_BITFURY_TRUE@am__append_11 = driver-bitfury.c driver-bitfury.h
+@HAS_GRIDSEED_TRUE@am__append_12 = driver-gridseed.c driver-gridseed.h
+@HAS_ICARUS_TRUE@am__append_13 = driver-icarus.c driver-gridseed.c driver-gridseed.h
+@HAS_KLONDIKE_TRUE@am__append_14 = driver-klondike.c
+@HAS_MODMINER_TRUE@am__append_15 = driver-modminer.c
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -347,6 +348,7 @@ BITSIZEOF_SIG_ATOMIC_T = @BITSIZEOF_SIG_ATOMIC_T@
 BITSIZEOF_SIZE_T = @BITSIZEOF_SIZE_T@
 BITSIZEOF_WCHAR_T = @BITSIZEOF_WCHAR_T@
 BITSIZEOF_WINT_T = @BITSIZEOF_WINT_T@
+BUILD_NUMBER = @BUILD_NUMBER@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -620,19 +622,20 @@ cgminer_LDADD = $(DLOPEN_FLAGS) @LIBCURL_LIBS@ @JANSSON_LIBS@ @PTHREAD_LIBS@ \
 
 @HAVE_WINDOWS_FALSE@cgminer_CPPFLAGS = -I$(top_builddir)/lib \
 @HAVE_WINDOWS_FALSE@	-I$(top_srcdir)/lib @OPENCL_FLAGS@ \
-@HAVE_WINDOWS_FALSE@	@LIBCURL_CFLAGS@ $(ADL_CPPFLAGS)
+@HAVE_WINDOWS_FALSE@	@LIBCURL_CFLAGS@ $(ADL_CPPFLAGS) \
+@HAVE_WINDOWS_FALSE@	$(am__append_3)
 @HAVE_WINDOWS_TRUE@cgminer_CPPFLAGS = -I$(top_builddir)/lib \
 @HAVE_WINDOWS_TRUE@	-I$(top_srcdir)/lib @OPENCL_FLAGS@ \
-@HAVE_WINDOWS_TRUE@	$(ADL_CPPFLAGS)
+@HAVE_WINDOWS_TRUE@	$(ADL_CPPFLAGS) $(am__append_3)
 
 # common sources
 cgminer_SOURCES := cgminer.c elist.h miner.h compat.h bench_block.h \
 	util.c util.h uthash.h logging.h sha2.c sha2.h api.c logging.c \
-	$(am__append_1) $(am__append_2) $(am__append_3) \
-	$(am__append_4) $(am__append_5) $(am__append_6) \
-	$(am__append_7) $(am__append_8) $(am__append_9) \
-	$(am__append_10) $(am__append_11) $(am__append_12) \
-	$(am__append_13) $(am__append_14)
+	$(am__append_1) $(am__append_2) $(am__append_4) \
+	$(am__append_5) $(am__append_6) $(am__append_7) \
+	$(am__append_8) $(am__append_9) $(am__append_10) \
+	$(am__append_11) $(am__append_12) $(am__append_13) \
+	$(am__append_14) $(am__append_15)
 @HAS_OPENCL_TRUE@bin_SCRIPTS = $(top_srcdir)/*.cl
 @HAS_MODMINER_TRUE@bitstreamsdir = $(bindir)/bitstreams
 @HAS_MODMINER_TRUE@dist_bitstreams_DATA = $(top_srcdir)/bitstreams/*

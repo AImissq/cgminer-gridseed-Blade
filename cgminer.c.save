@@ -8365,6 +8365,7 @@ int main(int argc, char *argv[])
 
 	initialise_usb();
 
+	snprintf(packagename, sizeof(packagename), "%s %s", PACKAGE, VERSION);
 	snprintf(packagename, sizeof(packagename), "%s %s", PACKAGE, CGMINER_VERSION);
 
 	handler.sa_handler = &sighandler;
