@@ -1,7 +1,7 @@
 #!/bin/sh
-echo 'Configuring cgminer 3.7.3 GSD 1.1 ....\r\n'
-./configure --enable-scrypt --enable-gridseed --with-build-number=1.1
-echo 'Making cgminer 3.7.3 GSD 1.1 ....\r\n'
+echo 'Configuring cgminer 3.7.3 GSD 1.2 ....\r\n'
+./configure --enable-scrypt --enable-gridseed --with-build-number=1.2
+echo 'Making cgminer 3.7.3 GSD 1.2 ....\r\n'
 make
 if test -f cgminer
 then
